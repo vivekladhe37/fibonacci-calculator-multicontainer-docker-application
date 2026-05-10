@@ -4,9 +4,7 @@ A complex, production-ready full-stack application designed to demonstrate the o
 
 ## 🏗 Architecture & Flow
 
-The application utilizes a microservices-like architecture where different responsibilities are handled by specialized containers. 
-
-![Application Flow](./flow.png)
+The application utilizes a microservices-like architecture where different responsibilities are handled by specialized containers.
 
 ### Components:
 - **Nginx**: Acts as a reverse proxy, routing traffic to either the React frontend or the Express API.
@@ -19,8 +17,6 @@ The application utilizes a microservices-like architecture where different respo
 ## 🧠 Learning Journey & Context
 
 This project was developed in distinct phases, moving from simple containerization to complex cloud orchestration.
-
-![Learning Context](./context.png)
 
 1.  **Phase 1: Local Development**: Mastering Docker commands and creating development-specific Dockerfiles.
 2.  **Phase 2: Multi-Container Orchestration**: Using Docker Compose to manage the local interaction between five different services.
