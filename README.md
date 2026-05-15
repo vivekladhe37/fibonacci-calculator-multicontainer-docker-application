@@ -9,7 +9,8 @@ This project showcases how to design, containerize, and deploy a scalable full�
 
 The system follows a microservices‑inspired pattern where each responsibility is isolated into its own container.
 
-### **Services**
+### Services
+
 - **Nginx** — Reverse proxy routing traffic to the React client or Express API  
 - **React Client** — Production‑ready frontend served via Nginx  
 - **Express Server** — API layer that stores indices in PostgreSQL and publishes tasks to Redis  
@@ -33,23 +34,23 @@ The system follows a microservices‑inspired pattern where each responsibility 
 
 This project was built in four phases:
 
-### **Phase 1 — Local Development**
+### Phase 1 — Local Development
 - Docker fundamentals  
 - Dev‑specific Dockerfiles  
 - Hot‑reload setup  
 
-### **Phase 2 — Multi‑Container Orchestration**
+### Phase 2 — Multi‑Container Orchestration
 - Docker Compose  
 - Networking between 5 services  
 - Environment variables & shared volumes  
 
-### **Phase 3 — CI/CD Pipeline**
+### Phase 3 — CI/CD Pipeline
 - Travis CI  
 - Automated testing  
 - Automated Docker image builds  
 - Versioned image pushes to Docker Hub  
 
-### **Phase 4 — Production Deployment (AWS)**
+### Phase 4 — Production Deployment (AWS)
 - Elastic Beanstalk (Multi‑Docker)  
 - RDS PostgreSQL  
 - ElastiCache Redis  
@@ -61,19 +62,19 @@ This project was built in four phases:
 
 ## 🛠️ Tech Stack
 
-### **Frontend**
+**Frontend**
 - React.js  
 - Nginx  
 
-### **Backend**
+**Backend**
 - Node.js  
 - Express  
 
-### **Data Layer**
+**Data Layer**
 - PostgreSQL (RDS)  
 - Redis (ElastiCache)  
 
-### **DevOps & Cloud**
+**DevOps & Cloud**
 - Docker  
 - Docker Compose  
 - Travis CI  
@@ -89,29 +90,90 @@ This project was built in four phases:
 
 The `.travis.yml` pipeline performs:
 
-### **1. Test Phase**
-- Builds dev image  
-- Runs test suite  
-
-### **2. Build Phase**
-- Builds production images for:
-  - Client  
-  - Server  
-  - Worker  
-  - Nginx  
-
-### **3. Push Phase**
-- Pushes versioned images to Docker Hub  
-
-### **4. Deploy Phase**
-- Triggers Elastic Beanstalk deployment  
-- EB pulls latest images and updates the environment  
+1. **Test Phase** — Builds dev image and runs test suite  
+2. **Build Phase** — Builds production images for Client, Server, Worker, and Nginx  
+3. **Push Phase** — Pushes versioned images to Docker Hub  
+4. **Deploy Phase** — Triggers Elastic Beanstalk deployment; Elastic Beanstalk pulls latest images and updates the environment  
 
 ---
 
 ## 🧪 Local Development
 
-Start all services locally:
+Start all services locally (indented code block to avoid fenced delimiter issues):
 
-```bash
 docker-compose up --build
+
+App will be available at:
+
+👉 **http://localhost:3050**
+
+---
+
+## ☁️ Production Deployment (AWS)
+
+To reproduce the production environment:
+
+### 1. Provision AWS Resources
+- Elastic Beanstalk (Multi‑Docker)  
+- RDS PostgreSQL  
+- ElastiCache Redis  
+- S3 bucket for Elastic Beanstalk artifacts  
+
+### 2. Configure Networking
+- Custom VPC security groups  
+- Allow internal traffic on:
+  - `5432` (PostgreSQL)  
+  - `6379` (Redis)  
+
+### 3. Set Environment Variables in Elastic Beanstalk
+- `PGHOST`  
+- `PGUSER`  
+- `PGPASSWORD`  
+- `PGDATABASE`  
+- `REDIS_HOST`  
+- `REDIS_PORT`  
+
+### 4. Deploy via Travis CI
+- Travis builds images  
+- Pushes to Docker Hub  
+- Elastic Beanstalk pulls latest images and updates the environment  
+
+---
+
+## 📁 Folder Structure
+
+```text
+/
+├── client/             # React frontend
+├── server/             # Express API
+├── worker/             # Fibonacci worker
+├── nginx/              # Reverse proxy config
+├── docker-compose.yml
+├── Dockerfile
+├── Dockerfile.dev
+├── .travis.yml
+├── AWS.CHEAT_SHEET.md
+└── README.md
+```
+
+
+---
+
+## 📘 Additional Documentation
+
+- See `AWS.CHEAT_SHEET.md` for step‑by‑step AWS configuration.
+
+---
+
+## 🎯 Summary
+
+This project demonstrates:
+
+- Multi‑container architecture  
+- Worker‑based background processing  
+- Docker Compose orchestration  
+- CI/CD automation  
+- AWS production deployment  
+- Real‑world DevOps patterns  
+
+It serves as a strong portfolio piece showing the ability to design, containerize, and deploy scalable cloud‑native applications.
