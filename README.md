@@ -99,13 +99,15 @@ The `.travis.yml` pipeline performs:
 
 ## 🧪 Local Development
 
-Start all services locally (indented code block to avoid fenced delimiter issues):
+Start all services locally:
 
+```bash
 docker-compose up --build
+```
 
 App will be available at:
 
-👉 **http://localhost:3050**
+👉 **`http://localhost:3050`**
 
 ---
 
@@ -149,10 +151,8 @@ To reproduce the production environment:
 ├── worker/             # Fibonacci worker
 ├── nginx/              # Reverse proxy config
 ├── docker-compose.yml
-├── Dockerfile
-├── Dockerfile.dev
 ├── .travis.yml
-├── AWS.CHEAT_SHEET.md
+├── AWS_CHEAT_SHEET.md
 └── README.md
 ```
 
@@ -161,7 +161,7 @@ To reproduce the production environment:
 
 ## 📘 Additional Documentation
 
-- See `AWS.CHEAT_SHEET.md` for step‑by‑step AWS configuration.
+- See [AWS_CHEAT_SHEET.md](./AWS_CHEAT_SHEET.md) for step‑by‑step AWS configuration.
 
 ---
 
